@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* React Flow base styles */
+@import "@xyflow/react/dist/style.css";
+
+/* Custom design tokens */
+@theme {
+  /* Node colors */
+  --color-node-bg: #ffffff;
+  --color-node-border: #e5e7eb;
+  --color-node-header: #f9fafb;
+  --color-node-selected: #3b82f6;
+
+  /* Handle colors */
+  --color-handle-source: #22c55e;
+  --color-handle-target: #3b82f6;
+  --color-handle-dynamic: #f59e0b;
+
+  /* Variable highlighting */
+  --color-variable-bg: #dbeafe;
+  --color-variable-text: #1d4ed8;
+
+  /* Canvas */
+  --color-canvas-bg: #fafafa;
+  --color-canvas-dots: #d1d5db;
+}
+
+/* Node base styles */
+.react-flow__node {
+  @apply !rounded-lg !border !border-node-border !bg-node-bg !p-0 !shadow-md;
+}
+
+.react-flow__node.selected {
+  @apply !border-node-selected !shadow-lg;
+}
+
+/* Handle base styles */
+.react-flow__handle {
+  @apply !h-3 !w-3 !rounded-full !border-2 !border-white;
+}
+
+.react-flow__handle-left {
+  @apply !-left-1.5;
+}
+
+.react-flow__handle-right {
+  @apply !-right-1.5;
+}
+
+.react-flow__handle.source {
+  @apply !bg-handle-source;
+}
+
+.react-flow__handle.target {
+  @apply !bg-handle-target;
+}
+
+/* Dynamic handles from variables */
+.react-flow__handle.dynamic {
+  @apply !bg-handle-dynamic;
+}
+
+/* Variable highlighting in textareas */
+.variable-highlight {
+  @apply rounded bg-variable-bg px-1 py-0.5 text-variable-text;
+}
