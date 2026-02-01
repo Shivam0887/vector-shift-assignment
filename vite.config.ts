@@ -14,5 +14,6 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    allowedHosts: ["sb-17rstsif44o2.vercel.run"]
   },
 });
