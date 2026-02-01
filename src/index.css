@@ -23,6 +23,15 @@
   /* Canvas */
   --color-canvas-bg: #fafafa;
   --color-canvas-dots: #d1d5db;
+  
+  /* Input/Textarea */
+  --color-input-border: #d1d5db;
+  --color-input-border-hover: #9ca3af;
+  --color-input-focus: #3b82f6;
+  --color-input-focus-ring: rgba(59, 130, 246, 0.1);
+  --color-input-bg: #ffffff;
+  --color-input-text: #111827;
+  --color-input-placeholder: #9ca3af;
 }
 
 /* Node base styles */

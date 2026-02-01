@@ -423,15 +423,24 @@ export function TextareaField({
 
   if (!dynamic) {
     return (
-      <div className={cn("flex flex-col gap-1", className)}>
-        <label className="text-xs font-medium text-gray-600">{label}</label>
+      <div className={cn("flex flex-col gap-2", className)}>
+        <label className="text-xs font-semibold text-gray-700 uppercase tracking-wide">{label}</label>
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           readOnly={readOnly}
-          className="nodrag w-full resize-none rounded-md border border-gray-300 px-2 py-1.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-          style={{ minHeight: "60px" }}
+          className={cn(
+            "nodrag w-full resize-none rounded-lg border-2 px-3 py-2.5 text-sm",
+            "font-normal leading-relaxed",
+            "placeholder:text-gray-400 placeholder:font-normal",
+            "transition-all duration-200 ease-out",
+            "focus:outline-none",
+            readOnly
+              ? "border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed"
+              : "border-gray-300 bg-white text-gray-900 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 hover:border-gray-400"
+          )}
+          style={{ minHeight: "80px" }}
         />
       </div>
     );
@@ -442,42 +451,56 @@ export function TextareaField({
   // ==========================================================================
 
   return (
-    <div className={cn("flex flex-col gap-1", className)}>
-      <label className="text-xs font-medium text-gray-600">{label}</label>
+    <div className={cn("flex flex-col gap-2", className)}>
+      <label className="text-xs font-semibold text-gray-700 uppercase tracking-wide">{label}</label>
 
       {/* Editor Styles */}
       <style>{`
+        .chip-editor {
+          transition: all 0.2s ease-out;
+        }
+        .chip-editor:focus {
+          border-color: #3b82f6;
+          box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        }
         .chip-editor .chip {
           display: inline-flex;
           align-items: center;
-          gap: 2px;
-          background: #fef3c7;
-          border: 1px solid #fcd34d;
-          border-radius: 4px;
-          padding: 1px 6px;
-          margin: 0 2px;
+          gap: 4px;
+          background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+          border: 1.5px solid #fcd34d;
+          border-radius: 6px;
+          padding: 2px 8px;
+          margin: 0 3px;
           font-size: 12px;
-          font-weight: 500;
-          color: #92400e;
+          font-weight: 600;
+          color: #b45309;
           user-select: none;
           vertical-align: middle;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         }
         .chip-editor .chip-text {
           pointer-events: none;
+          letter-spacing: 0.3px;
         }
         .chip-editor .chip-remove {
           cursor: pointer;
           font-size: 14px;
           line-height: 1;
-          padding: 0 2px;
-          border-radius: 2px;
+          padding: 2px 4px;
+          border-radius: 3px;
+          transition: all 0.15s;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
         }
         .chip-editor .chip-remove:hover {
-          background: #fcd34d;
+          background: rgba(245, 158, 11, 0.3);
         }
         .chip-editor .placeholder {
           color: #9ca3af;
           pointer-events: none;
+          font-style: italic;
         }
       `}</style>
 
@@ -491,8 +514,11 @@ export function TextareaField({
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
           className={cn(
-            "chip-editor nodrag w-full min-h-[60px] rounded-md border border-gray-300 px-2 py-1.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500",
-            readOnly && "bg-gray-50 cursor-not-allowed",
+            "chip-editor nodrag w-full min-h-[80px] rounded-lg border-2 px-3 py-2.5 text-sm font-normal leading-relaxed",
+            "transition-all duration-200 ease-out",
+            readOnly
+              ? "border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed"
+              : "border-gray-300 bg-white text-gray-900 hover:border-gray-400 focus:border-blue-500 focus:outline-none",
           )}
           style={{
             whiteSpace: "pre-wrap",
